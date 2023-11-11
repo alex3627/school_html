@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hallo</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+    <h1>Mein erstes HTML</h1>
+    <h2>Login</h2>
+    <form class="login-container" method="POST" action="http://localhost:8000/login">
+        <label for="username">Benutzername</label>
+        <input id="username" name="username" type="text" placeholder="Benutzernamen eingeben" />
+        <label for="password">Passwort</label> <input id="password" name="password" type="password"
+            placeholder="Passwort eingeben" />
+        <button type="submit" value="Absenden">Absenden</button>
+    </form>
+    <h2>Mein erster Artikel mit HTML</h2>
+    <p>Ein Abschnitt sieht so aus</p>
+    <p class="wichtig">Ein anderer Abschnitt sieht so aus</p>
+    <ul>
+        <li>eins</li>
+        <li class="wichtig">zwei</li>
+        <li>drei</li>
+    </ul>
+    <ol>
+        <li>eins</li>
+        <li>zwei</li>
+        <li>drei</li>
+    </ol>
+    <p id="test">Links gehen so: <a href="https://wiki.selfhtml.org/">SelfHTML</a></p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Johann_Heinrich_Wilhelm_Tischbein_-_Goethe_in_der_roemischen_Campagna.jpg"
+        alt="Bild von Goethe" width="500" />
+</body>
+
+</html>

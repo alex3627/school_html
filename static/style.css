@@ -1,0 +1,29 @@
+body {
+    background-color: powderblue;
+    margin: 1cm 1cm 1cm 1cm;
+}
+
+h1 {
+    color: blue;
+}
+
+p {
+    color: darkblue;
+}
+
+img {
+    border: solid black 5mm;
+}
+
+.login-container {
+    display: grid;
+    grid-template-columns: 5cm auto;
+}
+
+.wichtig {
+    background: green;
+}
+
+#test {
+    border: 1px solid red;
+}
