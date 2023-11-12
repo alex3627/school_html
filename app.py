@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import os
+import secrets
+from pathlib import Path
 from typing import Annotated
 from uuid import UUID, uuid4
 
@@ -18,14 +21,22 @@ from starlette.status import HTTP_303_SEE_OTHER
 class SessionData(BaseModel):
     username: str
 
+
 COOKIE_NAME = 'LOGON_COOKIE'
 
 cookie_params = CookieParameters()
 
 
 def get_secret_key():
-    # TODO: Better implementation for that!
-    return "DONOTUSE"
+    secrets_file = Path(os.environ.get('TMP') or '/tmp') / 'secure_key.bin'
+    if secrets_file.exists():
+        with open(secrets_file, 'br') as fobj:
+            return fobj.read()
+    else:
+        b = secrets.token_bytes(32)
+        with open(secrets_file, 'bw') as fobj:
+            fobj.write(b)
+        return b
 
 
 cookie = SessionCookie(
@@ -104,7 +115,8 @@ async def login(username: Annotated[str, Form()], password: Annotated[str, Form(
         session = uuid4()
         data = SessionData(username=username)
         await backend.create(session, data)
-        response = RedirectResponse(url=app.url_path_for("read_root"), status_code=HTTP_303_SEE_OTHER)
+        response = RedirectResponse(url=app.url_path_for(
+            "read_root"), status_code=HTTP_303_SEE_OTHER)
         cookie.attach_to_response(response, session)
         return response
     else:
